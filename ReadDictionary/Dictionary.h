@@ -8,8 +8,9 @@
 #ifndef READDICTIONARY_DICTIONARY_H_
 #define READDICTIONARY_DICTIONARY_H_
 
-#include <string>
 #include <fstream>
+#include <string>
+#include "Trie.h"
 #include "TrieNode.h"
 
 using namespace std;
@@ -21,6 +22,13 @@ public:
 
 	void InitDictionary(string path);
 	void InitDictionary();
+
+	void ReadFile(string path);
+//	void ReadFile(const char* content, long length);
+
+	void continueMatchFile();
+
+	void InitTrie(string path);
 
 private:
 	long getCharacter(ifstream &file, long &location);
@@ -34,6 +42,9 @@ private:
 	long arrary_size; // 字符数组大小
 	long largest_key; // 最大的字符编码
 	int character_num; // 字符个数
+
+	Trie* trie;
+	ifstream file;
 
 };
 
