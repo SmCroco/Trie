@@ -27,6 +27,7 @@ private:
 	ST_trieNode * word_end; // 用于构造词语时指向词语结尾标志
 
 	long count; // 总的匹配结果数
+	int num; // ST_trieNode中数组的大小
 };
 
 #endif /* TRIE_TRIE_H_ */

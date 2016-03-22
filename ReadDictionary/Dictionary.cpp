@@ -42,9 +42,6 @@ void Dictionary::InitDictionary(string path) {
 		// 循环读取文件中的字符
 		character value[6];
 		while ((value[0].byChar = file.get()) != EOF) {
-			if (character_num == 10900) {
-				int a = 0;
-			}
 
 			if (value[0].byChar != '\r' && value[0].byChar != '\n') {
 				// 获取utf8单个字符的长度
@@ -275,6 +272,7 @@ void Dictionary::InitTrie(string path) {
 					char_encode = ((value[0].byChar & 0x0f) << 12)
 							+ ((value[1].byChar & 0x3f) << 6)
 							+ (value[2].byChar & 0x3f);
+
 
 					// 插入trie树
 					trie->insert(array[char_encode], char_encode, 3, value);

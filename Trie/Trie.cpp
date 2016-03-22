@@ -14,6 +14,7 @@ using namespace std;
 
 Trie::Trie(int num) {
 
+	this->num = num + 1;
 	this->root = new ST_trieNode();
 
 	root->key = 0;
@@ -26,14 +27,14 @@ Trie::Trie(int num) {
 	root->value[5] = 0;
 	root->isEnd = false;
 	root->count = 0;
-	root->arrary = new long[num];
-		memset((char*)root->arrary, 0, (num+1)*sizeof(long));
+	root->arrary = new ST_trieNode*[this->num];
+	for (int i=0; i<this->num; i++) {
+		root->arrary[i] = NULL;
+	}
 	root->parent = NULL;
 	root->faile = NULL;
 
-
-
-	this->word_end = NULL;
+	this->word_end = root;
 
 	this->count = 0;
 }
@@ -45,16 +46,20 @@ Trie::~Trie() {
 bool Trie::insert(long key, long encode, int num, character* arg) {
 
 	// 查看结点是否存在
-	if (word_end->arrary[key] == 0) { // 不存在
+	if (word_end->arrary[key] == NULL) { // 不存在
 
 		ST_trieNode * node = new ST_trieNode();
 		node->key = key;
 		node->encode = encode;
 		for (int i = 0; i < num; i++) {
-			root->value[i] = arg[i];
+			root->value[i] = arg[i].byChar;
 		}
 		node->count = 0;
 		node->isEnd = false;
+		node->arrary = new ST_trieNode*[this->num];
+		for (int i=0; i<this->num; i++) {
+			node->arrary[i] = NULL;
+		}
 		node->parent = word_end;
 		node->faile = NULL;
 		word_end->arrary[key] = node;

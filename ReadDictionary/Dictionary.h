@@ -37,7 +37,7 @@ private:
 
 	bool isExist(long id);
 
-private:
+public:
 	long * array; // 词库字符数组
 	long arrary_size; // 字符数组大小
 	long largest_key; // 最大的字符编码
